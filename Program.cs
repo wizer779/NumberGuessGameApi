@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NumberGuessGameApi.Data;
+using NumberGuessGameApi.Services;
 
 namespace NumberGuessGameApi
 {
@@ -7,36 +8,39 @@ namespace NumberGuessGameApi
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+   var builder = WebApplication.CreateBuilder(args);
 
             // Obtener la cadena de conexión
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+          var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             // Registrar GameDbContext
-            builder.Services.AddDbContext<GameDbContext>(options =>
-                options.UseSqlServer(connectionString));
+ builder.Services.AddDbContext<GameDbContext>(options =>
+        options.UseSqlServer(connectionString));
 
-            // Add services to the container.
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Registrar el servicio del juego
+  builder.Services.AddScoped<IGameService, GameService>();
+
+// Add services to the container.
+       builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+  builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+  var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+       // Configure the HTTP request pipeline.
+  if (app.Environment.IsDevelopment())
+   {
+           app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-            app.UseHttpsRedirection();
+          app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
 
-            app.MapControllers();
+        app.MapControllers();
 
             app.Run();
         }
