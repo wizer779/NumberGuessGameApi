@@ -1,0 +1,33 @@
+# Visual Studio Code files
+.vscode/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Rider files
+.idea/
+
+# User-specific files
+*.DS_Store
+*.Spotlight-V100
+*.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Runtime files
+*.log
+*.bak
+*.tmp
+
+# Tooling
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.orig
