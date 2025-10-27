@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GameCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NumberGuessGameApi.Data;
 using NumberGuessGameApi.DataTransferObjects;
@@ -187,32 +188,15 @@ namespace NumberGuessGameApi.Services
             // Si adivinó correctamente
             if (secretNumber == attemptedNumber)
             {
-                return "¡Felicidades! Has adivinado el número.";
+                return "¡Felicidades! Adivinaste el número.";
             }
 
-            // Calcular famas y picas usando ESCMB.GameCore
-            // Por ahora, implementación básica - deberás usar el paquete ESCMB.GameCore
-            int famas = 0;
-            int picas = 0;
+            // Llamar al método del paquete NuGet ESCMB.GameCore
+            // El método ValidateAttempt recibe strings directamente
+            var evaluationResult = Evaluator.ValidateAttempt(secretNumber, attemptedNumber);
 
-            for (int i = 0; i < 4; i++)
-            {
-                if (secretNumber[i] == attemptedNumber[i])
-                {
-                    famas++;
-                }
-                else if (secretNumber.Contains(attemptedNumber[i]))
-                {
-                    picas++;
-                }
-            }
-
-            if (famas == 0 && picas == 0)
-            {
-                return "No hay famas ni picas.";
-            }
-
-            return $"{famas} fama{(famas != 1 ? "s" : "")} y {picas} pica{(picas != 1 ? "s" : "")}.";
+            // Devolver el mensaje formateado proporcionado por el paquete
+            return evaluationResult.Message;
         }
     }
 }
