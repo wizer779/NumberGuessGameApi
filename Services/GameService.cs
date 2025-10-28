@@ -38,7 +38,7 @@ namespace NumberGuessGameApi.Services
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Age = request.Age,
-                RegistrationDate = DateTime.UtcNow
+                RegistrationDate = DateTime.Now
             };
 
             _context.Players.Add(player);
@@ -83,7 +83,7 @@ namespace NumberGuessGameApi.Services
             {
                 PlayerId = request.PlayerId,
                 SecretNumber = secretNumber,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 Status = GameStatus.Active
             };
 
@@ -140,7 +140,7 @@ namespace NumberGuessGameApi.Services
                 GameId = request.GameId,
                 AttemptedNumber = request.AttemptedNumber,
                 ResultMessage = resultMessage,
-                AttemptDate = DateTime.UtcNow
+                AttemptDate = DateTime.Now
             };
 
             _context.Attempts.Add(attempt);

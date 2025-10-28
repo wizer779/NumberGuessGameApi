@@ -17,7 +17,7 @@ namespace NumberGuessGameApi.Models
         [Required]
         public string ResultMessage { get; set; } = string.Empty;
 
-        public DateTime AttemptDate { get; set; } = DateTime.UtcNow;
+        public DateTime AttemptDate { get; set; } = DateTime.Now;
 
         public Attempt()
         {

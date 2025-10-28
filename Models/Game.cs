@@ -14,7 +14,7 @@ namespace NumberGuessGameApi.Models
         [Required]
         public string SecretNumber { get; set; } = string.Empty;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public GameStatus Status { get; set; } = GameStatus.Active;
 

@@ -15,7 +15,7 @@ namespace NumberGuessGameApi.Models
         [Required]
         public int Age { get; set; }
 
-        public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
         public Player()
         {
